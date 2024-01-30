@@ -1,0 +1,49 @@
+
+/* STYLE THE HEADER */
+
+
+.App-header{
+  width: 100%;
+  border-bottom: 4px solid rgb(224 53 75);
+  display: flex;
+  align-items: center;
+}
+
+/* RESIZE THE IMG */
+
+.App-header img{
+  width: 25vh;
+}
+
+/* EDIT H1 */
+.App-header h1{
+  color: rgb(224 53 75);
+  font-weight:700;
+}
+
+/* STYLING APP BODY */
+
+.App-body p{
+  /* border: 1px solid black; */
+  padding: 30px;
+  font-weight: 100;
+  margin: 20px;
+  font-size: 20px;
+}
+
+/* FOTER STYLING */
+.App-footer{
+  width: 99%;
+  border-top: 3px solid rgb(224 53 75);;
+  margin: auto;
+  display: flex;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid black; */
+  position: absolute;
+  bottom: 0;
+}
+
