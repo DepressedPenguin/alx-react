@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import logo_hol from './logo_hol.jpg'
 import './App.css'
 // IMPORT TWO FUNCTIONS
-import {getFullYear,getFooterCopy} from './utils'
+import {getFullYear,getFooterCopy,getLatestNotification} from './utils'
 function App() {
   // GET THE TWO LABELS
   var label_email = document.getElementById("label_email");
@@ -31,7 +31,6 @@ function App() {
       <body className='App-body'>
         <p>Login to access the full dashboard</p>
         {/* EMAIL ZONE */}
-        <div className='login_zone'>
         <label onClick={foucs_on_eamil} id='label_email'>email</label>
         <input id='input_email' type='text'></input>
         {/* PASSWORD ZONE */}
@@ -39,7 +38,6 @@ function App() {
         <input id='input_password' type='password'></input>
         {/* BUTTON ZONE */}
         <button>OK</button>
-        </div>
       </body>
       {/* FOOTER */}
       <footer className='App-footer'>
@@ -51,3 +49,4 @@ function App() {
 }
 
 export default App;
+

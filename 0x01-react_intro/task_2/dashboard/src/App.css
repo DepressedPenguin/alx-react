@@ -46,18 +46,3 @@
   position: absolute;
   bottom: 0;
 }
-
-
-/* STYLE LOGIN */
-.login_zone{
-  width: 30%;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px black;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 120px;
-  border: 1px solid black;
-}
-
