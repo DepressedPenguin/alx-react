@@ -1,0 +1,18 @@
+
+.Notifications{
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.Notifications li[data-priority="default"]{
+    color: blue;
+}
+
+.Notifications li[data-priority="urgent"]
+{
+    color: red;
+}
+
+.Notifications li:last-child{
+    color: red;
+}
