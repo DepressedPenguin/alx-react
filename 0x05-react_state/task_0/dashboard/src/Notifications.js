@@ -9,27 +9,39 @@ class Notifications extends Component {
   constructor(props) {
     super(props);
 
+    // Bind the event handlers
     this.markAsRead = this.markAsRead.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.length > this.props.listNotifications.length;
+    return nextProps.listNotifications.length > this.props.listNotifications.length;
   }
 
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
 
+  handleDisplayDrawer() {
+    this.props.handleDisplayDrawer();
+  }
+
+  handleHideDrawer() {
+    this.props.handleHideDrawer();
+  }
+
   render() {
     return (
       <React.Fragment>
         {!this.props.displayDrawer ? (
-          <div className={css(styles.menuItem)}>
+          <div className={css(styles.menuItem)} onClick={this.handleDisplayDrawer}>
             <p>Your notifications</p>
           </div>
         ) : (
           <div className={css(styles.Notifications)}>
             <button
+              className={css(styles.button)}
               style={{
                 color: "#3a3a3a",
                 fontWeight: "bold",
@@ -43,18 +55,25 @@ class Notifications extends Component {
                 outline: "none",
               }}
               aria-label="Close"
-              onClick={(e) => {
-                console.log("Close button has been clicked");
-              }}
+              onClick={this.handleHideDrawer}
             >
               <img src={closeIcon} alt="close icon" width="10px" />
             </button>
-            {this.props.listNotifications.length != 0 ? <p>Here is the list of notifications</p> : null}
-            <ul>
-              {this.props.listNotifications.length == 0 ? <NotificationItem type="default" value="No new notification for now" /> : null}
-              {this.props.listNotifications.map((val, idx) => {
-                return <NotificationItem type={val.type} value={val.value} html={val.html} key={val.id} markAsRead={this.markAsRead} id={val.id} />;
-              })}
+            {this.props.listNotifications.length !== 0 ? <p>Here is the list of notifications</p> : null}
+            <ul className={css(styles.ul)}>
+              {this.props.listNotifications.length === 0 ? (
+                <NotificationItem type="default" value="No new notification for now" />
+              ) : null}
+              {this.props.listNotifications.map((val, idx) => (
+                <NotificationItem
+                  type={val.type}
+                  value={val.value}
+                  html={val.html}
+                  key={val.id}
+                  markAsRead={this.markAsRead}
+                  id={val.id}
+                />
+              ))}
             </ul>
           </div>
         )}
@@ -127,6 +146,8 @@ const styles = StyleSheet.create({
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  handleDisplayDrawer: PropTypes.func.isRequired,
+  handleHideDrawer: PropTypes.func.isRequired,
 };
 
 Notifications.defaultProps = {

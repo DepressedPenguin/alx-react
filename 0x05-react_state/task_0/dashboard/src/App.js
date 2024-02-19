@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, css } from "aphrodite";
-import Notifications from "./Notifications"; // Remove if not used
+import Notifications from "./Notifications/Notifications"; // Update the import path
 import Header from "./Header/Header"; // Updated import path
 import Login from "./Login/Login"; // Updated import path
 import Footer from "./Footer/Footer"; // Updated import path
@@ -20,6 +20,11 @@ class App extends Component {
     super(props);
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    
+    // Initialize local state
+    this.state = {
+      displayDrawer: false,
+    };
   }
 
   componentDidMount() {
@@ -29,6 +34,15 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleKeyDown);
   }
+
+  // Handling display and hide drawer
+  handleDisplayDrawer = () => {
+    this.setState({ displayDrawer: true });
+  };
+
+  handleHideDrawer = () => {
+    this.setState({ displayDrawer: false });
+  };
 
   handleKeyDown(event) {
     if (event.ctrlKey && event.key === "h") {
@@ -40,8 +54,12 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* Notifications component - Remove if not used */}
-        <Notifications />
+        {/* Notifications component */}
+        <Notifications
+          displayDrawer={this.state.displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer}
+          handleHideDrawer={this.handleHideDrawer}
+        />
 
         <div className={css(styles.app, styles.body)}>
           {/* Header component */}
@@ -63,4 +81,3 @@ App.defaultProps = {
 };
 
 export default App;
-
